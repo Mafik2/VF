@@ -5,36 +5,41 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) {
-		ArrayList <String[]> data = new ArrayList<>();
+	public static void main(String[] args) {
 
+		ArrayList<String[]> data = new ArrayList<>();
+
+		//region: read
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("VF_2015.dat"));
 
-		br.readLine();
+			br.readLine(); 
 
-		String nextLine = br.readLine();
-		while(nextLine != null){
-			String[] row = nextLine.split("");
-			data.add(row);
-			nextLine = br.readLine();
+			String nextLine = br.readLine();
+			while(nextLine != null) {
+				String[] row = nextLine.split(",");
+				data.add(row);
 
-
-
-		}
-		}catch (IOException e){
+				nextLine = br.readLine();
+			}
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//endregion
 
-		try{
+		//region: write
+		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter("VF_2015.csv"));
+
 			for (int i = 0; i < data.size(); i++) {
 				br.write(data.get(i)[0]);
 				br.newLine();
 			}
+
 			br.close();
-		}catch (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+		//regionend
+	}
 }
